@@ -1,5 +1,7 @@
 // Imports express package and database json file
 const express = require('express');
+const path = require('path');
+const fs = require('fs');
 const db = require('./db/db.json');
 const PORT = 3001;
 
@@ -15,15 +17,23 @@ app.use(express.static('public'));
 
 // GET wildcard ROUTE, serves when the requested resource doesnt exist 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/index.html'));
-})
+    console.info(`New ${req.method} request received`)
+    res.sendFile(path.join(__dirname, '/public/index.html'))
+});
 
 // GET Route for notes.html page
-app.get('/notes', (req, res) =>
+app.get('/notes', (req, res) => {
+    console.info(`New ${req.method} request received`)
     res.sendFile(path.join(__dirname, '/public/notes.html'))
-);
+});
 
 
+app.get('/api/notes', (req, res) => {
+    //  read the `db.json` file
+    // return all saved notes as JSON.
+    console.info(`New ${req.method} request received`)
+    res.json(db)
+});
 
 
 // Listens on port 3001 for connections
