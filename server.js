@@ -52,16 +52,7 @@ app.post('/api/notes', (req, res) => {
             title,
             text,
             note_id: uuid(),
-        };
-
-        const response = {
-            status: 'success',
-            body: newNote,
-        };
-
-        res.status(201).json(response);
-    } else {
-        res.status(500).json('Error in posting review');
+        }
     }
 });
 
