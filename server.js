@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const uuid = require('./helpers/uuid');
 const db = require('./db/db.json');
 const PORT = 3001;
 
@@ -35,6 +36,34 @@ app.get('/api/notes', (req, res) => {
     res.json(db)
 });
 
+app.post('/api/notes', (req, res) => {
+    // should receive a new note to save on the request body
+    // add it to the `db.json` file
+    // and then return the new note to the client
+    console.info(`New ${req.method} request received`)
+    console.info(req.rawHeaders);
+    // Adding request body data to variables
+    const { title, text } = req.body;
+
+    // If all the required properties are present
+    if (title && text) {
+        // Variable for the object we will save
+        const newNote = {
+            title,
+            text,
+            note_id: uuid(),
+        };
+
+        const response = {
+            status: 'success',
+            body: newNote,
+        };
+
+        res.status(201).json(response);
+    } else {
+        res.status(500).json('Error in posting review');
+    }
+});
 
 // Listens on port 3001 for connections
 app.listen(PORT, () =>
