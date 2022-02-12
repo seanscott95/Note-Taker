@@ -13,3 +13,13 @@ app.use(express.json());
 
 // Serves css and js files from the public directory
 app.use(express.static('public'));
+
+
+
+
+
+
+// Listens on port 3001 for connections
+app.listen(PORT, () =>
+  console.log(`Serving static asset routes on port ${PORT}!`)
+);
