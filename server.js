@@ -11,11 +11,12 @@ const app = express();
 // Middleware used to set up the express app to handle data parsing 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', apiRoutes);
-app.use('/', htmlRoutes);
 
 // Serves css and js files from the public directory
 app.use(express.static('public'));
+
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
 // Listens on port 3001 for connections
 app.listen(PORT, () =>

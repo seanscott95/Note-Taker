@@ -1,12 +1,18 @@
 const fs = require("fs");
 const db = require('../db/db.json');
-const uuid = require('./helpers/uuid');
+const uuid = require('../helpers/uuid');
 const router = require('express').Router();
 
 // GET Route for notes.html page
 router.get("/notes", (req, res) => {
     console.info(`New ${req.method} request received for /api/notes`)
-    res.json(db)
+    fs.readFile("./db/db.json", (err, data) => {
+        if (err) {
+            console.info(err);
+        } else {
+            res.json(JSON.parse(data));
+        }
+    })
 });
 
 // 
@@ -62,7 +68,7 @@ router.delete("/notes/:id", (req, res) => {
         if (err) {
             console.info(err);
         } else {
-            const { id } = req.params;
+            const { id } = req.params.id;
 
             for (let i = 0; i < db.length; i++) {
                 const index = db[i];
