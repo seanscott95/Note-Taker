@@ -30,16 +30,11 @@ app.get('/notes', (req, res) => {
 
 
 app.get('/api/notes', (req, res) => {
-    //  read the `db.json` file
-    // return all saved notes as JSON.
     console.info(`New ${req.method} request received`)
     res.json(db)
 });
 
 app.post('/api/notes', (req, res) => {
-    // should receive a new note to save on the request body
-    // add it to the `db.json` file
-    // and then return the new note to the client
     console.info(`New ${req.method} request received`)
     console.info(req.rawHeaders);
     // Adding request body data to variables
@@ -47,12 +42,34 @@ app.post('/api/notes', (req, res) => {
 
     // If all the required properties are present
     if (title && text) {
-        // Variable for the object we will save
+        // New variable for the object to be saved
         const newNote = {
             title,
             text,
             note_id: uuid(),
         }
+
+        fs.readFile("/db/db.json", "utf-8", (err, data) => {
+            if (err) {
+                console.info(err);
+            } else {
+                const parsedNotes = JSON.parse(data);
+                parsedNotes.push(newNote);
+
+                fs.writeFile("/db/db.json", JSON.stringify(parsedNotes), (err) =>
+                    err ? console.error(err) : console.log('Success!')
+                )
+            }
+        })
+
+        const response = {
+            status: 'success',
+            body: newNote,
+        }
+
+        res.status(201).json(response);
+    } else {
+        res.status(500).json('Error in posting note');
     }
 });
 
