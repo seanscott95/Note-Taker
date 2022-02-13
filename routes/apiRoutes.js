@@ -27,7 +27,7 @@ router.post('/notes', (req, res) => {
         const newNote = {
             title,
             text,
-            note_id: uuid(),
+            id: uuid(),
         }
 
         fs.readFile("./db/db.json", "utf-8", (err, data) => {
@@ -62,16 +62,17 @@ router.delete("/notes/:id", (req, res) => {
 
     console.info(`New ${req.method} request received for id ${req.params.id} note`);
 
-    const filteredNotes = [];
+    let filteredNotes = [];
     const { id } = req.params.id;
 
     fs.readFile("./db/db.json", "utf-8", (err, data) => {
         if (err) {
             console.info(err);
         } else {
-            for (let i = 0; i < db.length; i++) {
-                if (id === db[i].note_id) {
-                    filteredNotes = db.filter(note => note.note_id != id);
+            for (let i = 0; i < data.length; i++) {
+                if (id === data[i].id) {
+                    const dataParsed = JSON.parse(data);
+                    filteredNotes = dataParsed.filter(note => note.id != id);
 
                     fs.writeFile("./db/db.json", JSON.stringify(filteredNotes), (err) =>
                         err ? console.error(err) : console.log('Success!')
