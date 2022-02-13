@@ -56,24 +56,22 @@ router.post('/notes', (req, res) => {
 
 // 
 router.delete("/notes/:id", (req, res) => {
-    // should receive a query parameter that contains the id of a note to delete. To delete a note, 
-    // you'll need to read all notes from the `db.json` file, remove the note with the 
-    // given `id` property, and then rewrite the notes to the `db.json` file
-
     console.info(`New ${req.method} request received for id ${req.params.id} note`);
 
     let filteredNotes = [];
-    const { id } = req.params.id;
+    const { id } = req.params;
 
     fs.readFile("./db/db.json", "utf-8", (err, data) => {
         if (err) {
             console.info(err);
         } else {
-            for (let i = 0; i < data.length; i++) {
-                if (id === data[i].id) {
+            for (let i = 0; i < db.length; i++) {
+                if (id === db[i].id) {
                     const dataParsed = JSON.parse(data);
-                    filteredNotes = dataParsed.filter(note => note.id != id);
-
+                    
+                    filteredNotes = dataParsed.filter(note => {
+                        return note.id != id
+                        });
                     fs.writeFile("./db/db.json", JSON.stringify(filteredNotes), (err) =>
                         err ? console.error(err) : console.log('Success!')
                     );
