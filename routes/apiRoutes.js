@@ -80,7 +80,7 @@ router.delete("/notes/:id", (req, res) => {
         } else {
             // Cycles through the notes file
             for (let i = 0; i < db.length; i++) {
-                // Asks if any of the required notes id to delete matches any id in the file
+                // Asks if the required notes id to delete matches any id in the file
                 if (id === db[i].id) {
                     const dataParsed = JSON.parse(data);
                     
