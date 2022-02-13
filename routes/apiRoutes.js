@@ -63,16 +63,14 @@ router.delete("/notes/:id", (req, res) => {
     console.info(`New ${req.method} request received for id ${req.params.id} note`);
 
     const filteredNotes = [];
+    const { id } = req.params.id;
 
     fs.readFile("./db/db.json", "utf-8", (err, data) => {
         if (err) {
             console.info(err);
         } else {
-            const { id } = req.params.id;
-
             for (let i = 0; i < db.length; i++) {
-                const index = db[i];
-                if (id === index.note_id) {
+                if (id === db[i].note_id) {
                     filteredNotes = db.filter(note => note.note_id != id);
 
                     fs.writeFile("./db/db.json", JSON.stringify(filteredNotes), (err) =>
