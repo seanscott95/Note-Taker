@@ -66,7 +66,7 @@ router.post('/notes', (req, res) => {
 
 // DELETE Route for /notes/:id page, deletes a note
 router.delete("/notes/:id", (req, res) => {
-    console.info(`New ${req.method} request received for id ${req.params} note`);
+    console.info(`New ${req.method} request received for id ${req.params.id} note`);
 
     // New variable with an empyt object to be used later
     let filteredNotes = [];
