@@ -1,6 +1,8 @@
+// Node modules
 const path = require('path');
 const router = require('express').Router();
 
+// GET Route for /notes page
 router.get("/notes", (req, res) => {
     console.info(`New ${req.method} request received for /notes`)
     res.sendFile(path.join(__dirname, '../public/notes.html'))

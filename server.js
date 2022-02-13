@@ -1,7 +1,8 @@
-// Imports express package and database json file
+// Imports express package and sets up what PORT to use
 const express = require('express');
 const PORT = process.env.PORT || 3001;
 
+//// Imports our modular routers
 const apiRoutes = require('./routes/apiRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
 
