@@ -83,7 +83,7 @@ router.delete("/notes/:id", (req, res) => {
                     
                     // Removes that note if it matches the id
                     filteredNotes = dataParsed.filter(note => {
-                        return note.id != ids
+                        return note.id != id
                         });
 
                     // Creates a new file with the new notes added to the old ones
