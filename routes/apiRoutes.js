@@ -2,9 +2,6 @@
 const fs = require("fs");
 const router = require('express').Router();
 
-// Notes file
-const db = require('../db/db.json');
-
 // ID helper function 
 const uuid = require('../helpers/uuid');
 
@@ -72,21 +69,21 @@ router.delete("/notes/:id", (req, res) => {
     let filteredNotes = [];
     // Destructuring the object in req.params to a new variable id
     const { id } = req.params;
-
+    
     // Reads notes file
     fs.readFile("./db/db.json", "utf-8", (err, data) => {
+        const dataParsed = JSON.parse(data);
         if (err) {
             console.info(err);
         } else {
             // Cycles through the notes file
-            for (let i = 0; i < db.length; i++) {
+            for (let i = 0; i < dataParsed.length; i++) {
                 // Asks if the required notes id to delete matches any id in the file
-                if (id === db[i].id) {
-                    const dataParsed = JSON.parse(data);
+                if (id === dataParsed[i].id) {
                     
                     // Removes that note if it matches the id
                     filteredNotes = dataParsed.filter(note => {
-                        return note.id != id
+                        return note.id != ids
                         });
 
                     // Creates a new file with the new notes added to the old ones
