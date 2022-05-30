@@ -31,8 +31,11 @@
 
 ## Screenshots
 - [Main-Page](./public/assets/images/note-taker-1.png)
+
 - [Notes-Page](./public/assets/images/note-taker-2.png)
+
 - [Note-Deleted](./public/assets/images/note-taker-3.png)
+
 - [Note-Added](./public/assets/images/note-taker-4.png)
 
 ## Questions 
