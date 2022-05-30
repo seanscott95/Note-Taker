@@ -31,13 +31,13 @@
 
 ## Screenshots
 
-- [Main](./public/assets/images/note-taker-1.png)
+- ![Main-Page](./public/assets/images/note-taker-1.png)
 
-- [Notes](./public/assets/images/note-taker-2.png)
+- ![Notes-Page](./public/assets/images/note-taker-2.png)
 
-- [Deleted](./public/assets/images/note-taker-3.png)
+- ![Notes-Deleted](./public/assets/images/note-taker-3.png)
 
-- [Added](./public/assets/images/note-taker-4.png)
+- ![Notes-Added](./public/assets/images/note-taker-4.png)
 
 ## Questions 
 <p> To reach me with additional questions please contact me via one of the following methods: </p>
