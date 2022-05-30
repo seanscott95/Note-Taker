@@ -30,13 +30,14 @@
 <p> This application was not developed using Test Driven Development.</p>
 
 ## Screenshots
-- [Main-Page](./public/assets/images/note-taker-1.png)
 
-- [Notes-Page](./public/assets/images/note-taker-2.png)
+- [Main](./public/assets/images/note-taker-1.png)
 
-- [Note-Deleted](./public/assets/images/note-taker-3.png)
+- [Notes](./public/assets/images/note-taker-2.png)
 
-- [Note-Added](./public/assets/images/note-taker-4.png)
+- [Deleted](./public/assets/images/note-taker-3.png)
+
+- [Added](./public/assets/images/note-taker-4.png)
 
 ## Questions 
 <p> To reach me with additional questions please contact me via one of the following methods: </p>
